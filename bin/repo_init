@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Git clone all repos to the working folder
+
+mkdir -p ~/project
+
+repos='tradestation finclab lean labenv datastore tickstore docstore datalab'
+
+for repo in $repos; do 
+    echo "Fetching repo ${repo} from Github"
+    if [ ! -d ~/project/${repo} ]; then
+      git clone --recurse-submodules -j8 git@github.com:inteclab/$repo.git ~/project/${repo}
+    fi
+done
+ 

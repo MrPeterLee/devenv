@@ -1,0 +1,54 @@
+; user {{{
+[user]
+	email = peter.lee@finclab.com
+	name = Peter Lee
+; }}}
+; core {{{
+[core]
+	editor    = nvim
+	pager = diff-so-fancy | less --tabs=4 -RFX
+; }}}
+; alias {{{
+[alias]
+	lod       = log --oneline --decorate --all --graph
+	lol       = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %C(green)(%cr)'
+	loa       = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %C(green)(%cr) %C(cyan)[%an]'
+; }}}
+; color {{{
+[color]
+	branch    = auto
+	diff      = auto
+	status    = auto
+	ui = true
+; }}}
+; color diff {{{
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	commit = yellow bold
+	whitespace = red reverse
+; }}}
+; color status {{{
+[color "status"]
+	added     = green
+	changed   = red
+	unmerged  = yellow
+	untracked = magenta
+; }}}
+; color branch {{{
+[color "branch"]
+	current   = green
+	local     = blue
+	remote    = magenta
+; }}}
+[credential]
+	helper = cache --timeout 3600
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[diff-so-fancy]
+	markEmptyLines = false

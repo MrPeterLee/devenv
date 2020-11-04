@@ -1,0 +1,12 @@
+# Cron line explaination
+# * * * * * "command to be executed"
+# - - - - -
+# | | | | |
+# | | | | ----- Day of week (0 - 7) (Sunday=0 or 7)
+# | | | ------- Month (1 - 12)
+# | | --------- Day of month (1 - 31)
+# | ----------- Hour (0 - 23)
+# ------------- Minute (0 - 59)
+
+# Weekly rebooting the server @ Sunday 2:00 AM
+00 02 * * 0 /sbin/shutdown -r +5

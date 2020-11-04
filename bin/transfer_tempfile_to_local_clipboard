@@ -1,0 +1,3 @@
+#/bin/zsh
+
+cat /tmp/vim_clipboard.tempfile | ssh -p 2222 127.0.0.1 pbcopy

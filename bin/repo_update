@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Git pull all repos and submodules to their working folders
+
+repos='tradestation finclab lean labenv datastore tickstore docstore datalab'
+
+for repo in $repos; do 
+    if [ -d ~/project/${repo} ]; then
+        echo "Pulling repo ${repo} from Github"
+        cd ~/project/${repo}
+        git submodule update --recursive --remote
+        cd -
+    fi
+
+    # Pull latest from upstream
+    if [[ "$repo" == "lean" ]]; then
+        cd ~/project/lean
+        git remote add upstream https://github.com/QuantConnect/Lean.git > /dev/null 2>&1
+        git fetch upstream
+        git checkout master
+        git merge upstream/master
+        cd -
+    fi
+done
+ 

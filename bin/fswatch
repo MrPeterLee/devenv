@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+NO_PYTEST=false
+WATCH_PATH="$HOME/project/"
+if [[ $# -eq 1 ]]; then
+    NO_PYTEST=$1
+elif [[ $# -eq 2 ]]; then
+    NO_PYTEST=$1
+    WATCH_PATH=$2
+fi
+
+# Color variables
+RED='\033[0;31m'
+ORANGE='\033[0;33m'
+LIGHT_BLUE='\033[1;34m'
+NO_COLOR='\033[0m' # No Color
+
+echo -e "File-system watch is ready (No ${LIGHT_BLUE}Pytest${NO_COLOR}?: ${LIGHT_BLUE}$NO_PYTEST${NO_COLOR})"
+
+contains() {
+    string="$1"
+    substring="$2"
+    if test "${string#*substring}" != "$string"
+    then
+        return 0   # $substring is in $string
+    else
+        return 1
+    fi
+}
+
+notcontains() {
+    string="$1"
+    substring="$2"
+    if test "${string#*substring}" != "$string"
+    then
+        return 1   # $substring NOT in $string
+    else
+        return 0
+    fi
+}
+# Initiate inotifywait
+inotifywait -e close_write,moved_to -m -r --exclude .git $WATCH_PATH |
+while read -r folder events filename; do
+
+    extension="${filename##*.}"
+    filestem="${filename%.*}"
+
+    IFS='/' read -r -a array <<< "$folder"
+    project="${array[4]}"
+
+    # Get the project path
+
+    if [[ "$extension" == "py" && ! "$filename" == "."* ]]; then
+        echo "RECEIVED ${filename}"
+        echo ""
+        echo "########## Executing Project {$project} Python file: $filename (Events: $events) ##########"
+        echo ""
+
+        ipython $folder$filename
+
+        # Check if the python command completes successfully
+        if [ $? -eq 0 ]; then
+
+                echo "Execution of ${filename} completed successfully."
+
+                if [[ ! "$NO_PYTEST" == true ]]; then
+                    echo ""
+                    echo "########## Executing py.test suite ##########"
+                    echo ""
+                    # --disable-warnings
+                    py.test "/home/peter/project/$project" --maxfail 1 -n 5 -rxXs -m "not slow" -m "not network" -v
+                fi
+
+            else
+                echo -e "${RED}ERROR${NO_COLOR}: Execution of ${ORANGE}${folder}${filename}${NO_COLOR} ${RED}failed${NO_COLOR}..\n"
+        fi
+
+    fi
+done
