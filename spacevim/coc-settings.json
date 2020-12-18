@@ -1,5 +1,18 @@
 {
-        "python.jediEnabled": false,
-        "python.linting.pylintEnabled": false,
-        "python.linting.flake8Enabled": false
+ 
+  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.snippets.enable": true,
+  "coc.preferences.formatOnSaveFiletypes": ["python"],
+  // python config
+  // "python.venvFolders": [".virtualenvs"],
+  // "python.venvPath" : "~/",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": false,
+  "python.linting.lintOnSave": true,
+  "python.jediEnabled": false,
+  "suggest.enablePreview":true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "/opt/anaconda/envs/finclab/bin/black",
+  "python.sortImports.path": "/opt/anaconda/envs/finclab/bin/isort"
 }

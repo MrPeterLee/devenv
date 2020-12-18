@@ -80,20 +80,15 @@ fi
 
 ############################## PATHS #############################
 dirs=( '/opt/anaconda/bin' \
-   '/opt/anaconda3/bin' \
-   '/usr/local/anaconda3/bin' \
-   '/opt/miniconda/bin' \
-   '/opt/miniconda3/bin' \
-   '/home/peter/project/dotfiles/bin' \
-   '/Users/peter/project/dotfiles/bin' \
-   '/lab/lib/finclab/sh/zsh' \
-   '/lab/lib/finclab/sh/bash' \
-   '/lab/lib/finclab/sh/fish' \
-   '/Users/peter/project/finclab/zsh' \
-   '/home/peter/.local/bin' \
-   '/snap/bin' \
+       '/snap/bin' \
+       '$HOME/.local/bin' \
+       '$HOME/project/dotfiles/bin' \
+       '/lab/paper/finclab/finclab/sh/bin' \
+       '/lab/paper/finclab/finclab/sh/bash' \
+       '/lab/paper/finclab/finclab/sh/zsh' \
+       '/lab/paper/finclab/finclab/sh/fish' \
    )
-for folderpath in $dirs; do 
+for folderpath in $dirs; do
     # echo "looking at folder $folderpath"
     if [ -d "$folderpath" ]; then
         # echo "folder exists: $folderpath"
@@ -101,13 +96,14 @@ for folderpath in $dirs; do
     fi
 done
 
+
 ############################## ENV Variables #############################
 # Grab env variables
 if [ -f "${HOME}/.lab/labenv.yml" ]; then
     echo "Loading config for package labenv (${HOME}/.lab/labenv.yml)..."
     . parse_yml "${HOME}/.lab/labenv.yml" >/dev/null
     for package in ${HOME}/.lab/*.yml ; do
-        test "$package" = "${HOME}/.lab/labenv.yml" && continue 
+        test "$package" = "${HOME}/.lab/labenv.yml" && continue
         filestem=$(basename -s .yml $package)
         echo "Loading config for package ${filestem} (${package})..."
         . parse_yml "${package}" "${filestem}_" >/dev/null
@@ -143,9 +139,16 @@ alias fd=fdfind
 alias vpn='sudo /usr/local/Cellar/openvpn/2.4.9/sbin/openvpn --config ~/peter.ovpn'
 alias update_prezto='cd $ZPREZTODIR;git pull;git submodule update --init --recursive'
 
-alias ls='exa --group-directories-first'
-alias l='exa -lah --group-directories-first'
-alias ll='exa -lah --group-directories-first'
+if ! type "exa" > /dev/null; then
+    alias ls='exa --group-directories-first'
+    alias l='exa -lah --group-directories-first'
+    alias ll='exa -lah --group-directories-first'
+fi
+
+if ! type "batcat" > /dev/null; then
+    alias bat='batcat'
+fi
+
 alias lsp='ls -C --color=always | less -R'
 alias lsd='ls -ld */'
 alias lsf='ls -lhp | grep -v "/"'
@@ -296,9 +299,6 @@ alias news='newsbeuter'
 alias www='w3m'
 alias mux='tmuxinator'
 
-if [[ ! ${os_type} == "mac" ]]; then
-    alias bat='batcat'
-fi
 
 # ssh copy back to local
 # https://stackoverflow.com/questions/1152362/how-to-send-data-to-local-clipboard-from-a-remote-ssh-session
@@ -442,10 +442,10 @@ bindkey -a ds delete-surround
 bindkey -a ys add-surround
 bindkey -M visual S add-surround
 
-
-conda deactivate
-conda activate finclab
-
+# string=$(conda env list)
+word="finclab"
+test "${string#*$word}" != "$string" && echo "$word found in conda environment" && conda activate finclab
+# test "${string#*$word}" = "$string" && echo "$word NOT found in conda environment" && conda activate base
 
 # Launch fish
 fish

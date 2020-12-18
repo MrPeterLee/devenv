@@ -180,7 +180,7 @@ fi
 
 # Grab env variables
 parse_yaml_env "${HOME}/.lab/labenv.yml"
-for package in cryptocompare datalab datastore docstore dotfiles finclab labenv tickstore tradestation tushare iex
+for package in cryptocompare datalab datastore docstore dotfiles finclab labenv tickstore tushare iex
 do
     parse_yaml_env "${HOME}/.lab/${package}.yml" ${package}_
 done

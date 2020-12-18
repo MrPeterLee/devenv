@@ -37,31 +37,36 @@ set -x PATH $PATH /home/peter/project/dotfiles/bin
 set -x PATH $PATH /Users/peter/project/dotfiles/bin
 set -x PATH $PATH /home/peter/project/dotfiles/bin
 set -x PATH $PATH /lab/dotfiles/bin
-set -x PATH $PATH /home/peter/project/finclab/zsh
+set -x PATH $PATH /lab/lib/finclab/sh/fish
+set -x PATH $PATH /lab/lib/finclab/sh/bash
 set -x PATH $PATH /Users/peter/project/finclab/zsh
 set -x PATH $PATH /home/peter/.local/bin
 
 ############################## Abbr #############################
 # gitpush to main
-abbr -a gpm 'set -lx _git_msg (read) && git submodule foreach \'git checkout main; git pull\' && git add . && git commit -m $_git_msg && git push && set -e _git_msg'
+abbr -a gpm 'set -lx _git_msg (read) && git submodule foreach \'git checkout main; git pull\' && nb_rm_output && git add . && git commit -m $_git_msg && git push && set -e _git_msg'
 # switch to prod folder && git merge && git push
-abbr -a gpp 'set -lx _current_folder (pwd) && cd (string replace /lab/paper /lab/prod $_current_folder) && git submodule foreach \'git checkout prod; git pull\' && git merge main && git push && cd $_current_folder && set -e _current_folder'
+abbr -a gpp 'set -lx _current_folder (pwd) && cd (string replace /lab/paper /lab/prod $_current_folder) && git submodule foreach \'git checkout prod; git pull\' && nb_rm_output && git merge main && git push && cd $_current_folder && set -e _current_folder'
 abbr -a paper 'set -lx _current_folder (pwd) && set _current_folder (string replace /lab/prod /lab/paper $_current_folder) && cd $_current_folder && set -e _current_folder'
 abbr -a prod 'set -lx _current_folder (pwd) && set _current_folder (string replace /lab/paper /lab/prod $_current_folder) && cd $_current_folder && set -e _current_folder'
-
+abbr -a ssh_ts 'ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -o "ServerAliveInterval 60" -p 50000 peter@10.1.1.100'
 
 ############################## ALIAS #############################
 alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v /home/peter/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker'
-alias cat='batcat'
-alias fd=fdfind
 alias pip2=pip
 alias pip=pip3
+alias vim=nvim
 alias vpn='sudo /usr/local/Cellar/openvpn/2.4.9/sbin/openvpn --config ~/peter.ovpn'
 alias update_prezto='cd $ZPREZTODIR;git pull;git submodule update --init --recursive'
-
-alias ls='exa --group-directories-first'
-alias ll='exa -lhg --group-directories-first'
-alias la='exa -lahg --group-directories-first'
+if type -q exa
+    alias ls='exa --group-directories-first'
+    alias ll='exa -lhg --group-directories-first'
+    alias la='exa -lahg --group-directories-first'
+end
+if type -q batcat
+    alias cat='batcat'
+end
+alias fd=fdfind
 alias lsp='ls -C --color=always | less -R'
 alias lsd='ls -ldg */'
 alias lsf='ls -lhpg | grep -v "/"'

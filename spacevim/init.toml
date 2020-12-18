@@ -19,6 +19,8 @@
     default_indent = 4
     expand_tab = true
 
+    filemanager = "nerdtree"
+
     # statusline:nerd fonts required
     statusline_separator = "arrow"
     statusline_inactive_separator = "arrow"
@@ -48,7 +50,7 @@
     bootstrap_after = "myspacevim#after"
 
     autocomplete_method = "coc"  # Enable COC as the auto-completion engine
-# autocomplete_method = "deoplete"
+    # autocomplete_method = "deoplete"
 
     # File manager
     filetree_direction = "right"
@@ -60,6 +62,9 @@
 
     # Misc
     vim_help_language = "cn"
+
+[[layers]]
+    name = "unite"
 
 [[layers]]
     name = "checkers"
@@ -90,9 +95,9 @@
       ''
   ]
 
-# [[layers]]
-#   name = "lang#csharp"
-#   highlight_types = 0
+[[layers]]
+  name = "lang#csharp"
+  highlight_types = 0
 
 # [[layers]]
 #   name = "lang#html"
@@ -155,6 +160,11 @@
   # Enable bookmarks
   name = "tools"
 
+[[layers]]
+  # fzf can be installed using: conda install -c conda-forge fzf
+  name = "fzf"
+
+
 # [[layers]]
 #   # Linters
 #   name = "checkers"
@@ -182,6 +192,22 @@
 [[custom_plugins]]
   name = "rkitover/vimpager"
   merged = false
+
+[[custom_plugins]]
+  name = "wincent/ferret"
+  merged = false
+
+[[custom_plugins]]
+  name = "nelstrom/vim-visual-star-search"
+  merged = false
+
+# [[custom_plugins]]
+#   name = "vim-airline/vim-airline"
+#   merged = false
+# 
+# [[custom_plugins]]
+#   name = "vim-airline/vim-airline-themes"
+#   merged = false
 
 # [[custom_plugins]]
 #     name = "tmhedberg/SimpylFold"
