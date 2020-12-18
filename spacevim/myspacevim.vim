@@ -39,6 +39,9 @@ func! myspacevim#after() abort
   set clipboard=unnamed
   vnoremap <Leader>y :'<,'>write! >> /tmp/vim_clipboard.tempfile <enter> <bar> : !transfer_tempfile_to_local_clipboard <enter> <bar> : !rm -f /temp/vim_clipboard.tempfile <enter>
 
+  " =========== NerdTree ===========
+  let g:NERDTreeQuitOnOpen = 1
+
   " =========== PyDocString DOQ ===========
   let g:pydocstring_doq_path = '/opt/anaconda/envs/finclab/bin/doq'
   let g:pydocstring_formatter = 'numpy'
