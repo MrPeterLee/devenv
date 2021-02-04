@@ -64,14 +64,11 @@
     vim_help_language = "cn"
 
 [[layers]]
-    name = "unite"
-
-[[layers]]
     name = "checkers"
     # Linter
     enable_neomake = true
     enable_ale = false
-    lint_on_the_fly = false
+    lint_on_the_fly = true
 
 [[layers]]
   name = "autocomplete"
@@ -87,13 +84,14 @@
 
 [[layers]]
   name = "lang#python"
-  format_on_save = 1
+  format_on_save = 0
   python_file_head = [
       '#!/usr/bin/env python',
       '# -*- coding: utf-8 -*-',
       '',
       ''
   ]
+  python_interpreter = '/opt/anaconda/envs/finclab/bin/python'
 
 [[layers]]
   name = "lang#csharp"
@@ -153,17 +151,16 @@
 # [[layers]]
 #   name = "VersionControl"
 
-# [[layers]]
-#   name = "denite"
+[[layers]]
+  name = "denite"
 
 [[layers]]
   # Enable bookmarks
   name = "tools"
 
+# fzf can be installed using: conda install -c conda-forge fzf
 [[layers]]
-  # fzf can be installed using: conda install -c conda-forge fzf
   name = "fzf"
-
 
 # [[layers]]
 #   # Linters
@@ -200,6 +197,20 @@
 [[custom_plugins]]
   name = "nelstrom/vim-visual-star-search"
   merged = false
+
+[[custom_plugins]]
+  name = "neomake/neomake"
+  merged = false
+
+# [[custom_plugins]]
+#   # required for fzf as it changes working directory to project root
+#   name = "airblade/vim-rooter"
+#   merged = false
+
+
+# [[custom_plugins]]
+#   name = 'Shougo/vimfiler.vim'
+#   merged = false
 
 # [[custom_plugins]]
 #   name = "vim-airline/vim-airline"

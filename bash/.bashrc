@@ -186,5 +186,8 @@ do
 done
 
 # log in to docker registry
-echo $dockerhub_password | docker login --username $dockerhub_username --password-stdin
-echo $github_access_token | docker login --username $github_username --password-stdin "docker.pkg.github.com"
+# echo $dockerhub_password | docker login --username $dockerhub_username --password-stdin
+echo $github_access_token | docker login https://docker.pkg.github.com --username $github_username --password-stdin
+
+# Init quantrocket environment
+eval "$(register-python-argcomplete quantrocket)"

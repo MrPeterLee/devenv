@@ -82,11 +82,11 @@ fi
 dirs=( '/opt/anaconda/bin' \
        '/snap/bin' \
        '$HOME/.local/bin' \
-       '$HOME/project/dotfiles/bin' \
-       '/lab/paper/finclab/finclab/sh/bin' \
-       '/lab/paper/finclab/finclab/sh/bash' \
-       '/lab/paper/finclab/finclab/sh/zsh' \
-       '/lab/paper/finclab/finclab/sh/fish' \
+       '$HOME/.files/bin' \
+       '/lab/lib/finclab/sh/bin' \
+       '/lab/lib/finclab/sh/bash' \
+       '/lab/lib/finclab/sh/zsh' \
+       '/lab/lib/finclab/sh/fish' \
    )
 for folderpath in $dirs; do
     # echo "looking at folder $folderpath"
@@ -447,5 +447,9 @@ word="finclab"
 test "${string#*$word}" != "$string" && echo "$word found in conda environment" && conda activate finclab
 # test "${string#*$word}" = "$string" && echo "$word NOT found in conda environment" && conda activate base
 
+# Connecting to local deployment of QuantRocket
+export HOUSTON_URL=http://10.1.1.100:1969
+
 # Launch fish
 fish
+

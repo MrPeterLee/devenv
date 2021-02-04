@@ -19,6 +19,10 @@ if [ (hostname) = finclab-us1 ]
     conda activate finclab
 end 
 
+if [ (hostname) = TradeStation-Peter ]
+    conda activate finclab
+end 
+
 ############################## My Settings #############################
 fish_vi_key_bindings  # vi-mode
 set -gx PROJECT_PATHS ~/lab/paper ~/project
@@ -44,9 +48,10 @@ set -x PATH $PATH /home/peter/.local/bin
 
 ############################## Abbr #############################
 # gitpush to main
-abbr -a gpm 'set -lx _git_msg (read) && git submodule foreach \'git checkout main; git pull\' && nb_rm_output && git add . && git commit -m $_git_msg && git push && set -e _git_msg'
+abbr -a qr 'quantrocket'
+abbr -a gpm 'set -lx _git_msg (read) && cd (git rev-parse --show-toplevel) && git submodule foreach \'git stash; git checkout main; git pull origin main\' && pytest && nb_rm_output && git add . && git commit -m $_git_msg && git push origin main && set -e _git_msg && cd -'
 # switch to prod folder && git merge && git push
-abbr -a gpp 'set -lx _current_folder (pwd) && cd (string replace /lab/paper /lab/prod $_current_folder) && git submodule foreach \'git checkout prod; git pull\' && nb_rm_output && git merge main && git push && cd $_current_folder && set -e _current_folder'
+abbr -a gpp 'set -lx _current_folder (pwd) && cd (git rev-parse --show-toplevel) && git merge -s ours prod && cd (string replace /lab/paper /lab/prod $_current_folder) && git submodule foreach \'git stash; git checkout prod; git pull origin prod\' && git merge main && git push origin prod && cd $_current_folder && set -e _current_folder'
 abbr -a paper 'set -lx _current_folder (pwd) && set _current_folder (string replace /lab/prod /lab/paper $_current_folder) && cd $_current_folder && set -e _current_folder'
 abbr -a prod 'set -lx _current_folder (pwd) && set _current_folder (string replace /lab/paper /lab/prod $_current_folder) && cd $_current_folder && set -e _current_folder'
 abbr -a ssh_ts 'ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -o "ServerAliveInterval 60" -p 50000 peter@10.1.1.100'

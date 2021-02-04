@@ -1,9 +1,10 @@
 {
- 
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.snippets.enable": true,
   "coc.preferences.formatOnSaveFiletypes": ["python"],
   // python config
+  "diagnostic.displayByAle": true,
+  "python.condaPath": "conda",
   // "python.venvFolders": [".virtualenvs"],
   // "python.venvPath" : "~/",
   "python.linting.enabled": true,
