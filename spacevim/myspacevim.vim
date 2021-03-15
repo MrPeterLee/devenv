@@ -37,7 +37,6 @@ endf
 func! myspacevim#after() abort
   " Script that dominates SpaceVim settings
 
-
   " =========== Python Linter ===========
   " when to activate neomake
   call neomake#configure#automake('nrw', 50)
@@ -96,16 +95,16 @@ func! myspacevim#after() abort
   let g:vim_isort_python_version = 'python3'
   let g:vim_isort_map = ''
 
-  " =========== Ultisnips Settings ===========
-    "ultisnips
-  let g:snips_author = "Peter Lee"
-  let g:snips_email = "mr.peter.lee@finclab.com"
-  let g:snips_github = "https://github.com/mrpeterlee"
+  "" =========== Ultisnips Settings ===========
+  "  "ultisnips
+  "let g:snips_author = "Peter Lee"
+  "let g:snips_email = "mr.peter.lee@finclab.com"
+  "let g:snips_github = "https://github.com/mrpeterlee"
 
-  let g:UltiSnipsExpandTrigger               <c-7>
-  let g:UltiSnipsListSnippets                <c-8>
-  let g:UltiSnipsJumpForwardTrigger          <c-9>
-  let g:UltiSnipsJumpBackwardTrigger         <c-0>
+  "let g:UltiSnipsExpandTrigger               <c-7>
+  "let g:UltiSnipsListSnippets                <c-8>
+  "let g:UltiSnipsJumpForwardTrigger          <c-9>
+  "let g:UltiSnipsJumpBackwardTrigger         <c-0>
 
   " =========== Vim-Tmux Navigator Settings ===========
   let g:tmux_navigator_no_mappings = 1

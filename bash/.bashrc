@@ -99,7 +99,7 @@ fi
 # Path
 ## Anaconda
 # export PATH="/opt/anaconda/bin:$PATH"  # commented out by conda initialize
-
+export PATH=$PATH:/usr/bin:/usr/sbin:/opt/anaconda/bin:$HOME/.local/bin:$HOME/.files/bin:/lab/lib/finclab/sh/bin:/lab/lib/finclab/sh/bash:/lab/lib/finclab/sh/zsh:/lab/lib/finclab/sh/fish
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -187,7 +187,16 @@ done
 
 # log in to docker registry
 # echo $dockerhub_password | docker login --username $dockerhub_username --password-stdin
-echo $github_access_token | docker login https://docker.pkg.github.com --username $github_username --password-stdin
+if command -v docker &> /dev/null; then
+    echo $github_access_token | docker login https://docker.pkg.github.com --username $github_username --password-stdin
+fi
 
 # Init quantrocket environment
 eval "$(register-python-argcomplete quantrocket)"
+
+# Enhanced file permission on $HOME/ts folder
+# Set file permissions to owner only
+## Set folders to: drwxr-----
+# find $HOME/ts/ -type d -exec chmod 700 {} \;
+## Set files to: -rw-r-----
+# find $HOME/ts/ -type f -exec chmod 600 {} \;

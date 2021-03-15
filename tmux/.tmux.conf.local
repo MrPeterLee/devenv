@@ -90,7 +90,7 @@ tmux_conf_theme_window_bg="default"
 # highlight focused pane (tmux >= 2.1), possible values are:
 #   - true
 #   - false (default)
-tmux_conf_theme_highlight_focused_pane=true
+tmux_conf_theme_highlight_focused_pane=false
 
 # focused pane colours:
 tmux_conf_theme_focused_pane_bg="$tmux_conf_theme_colour_2"
@@ -226,7 +226,7 @@ tmux_conf_theme_right_separator_sub="\uE0B3"  #   PowerlineSymbols.otf font, see
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=" ❐ #{hostname} | #{username}#{root} "
+tmux_conf_theme_status_left=" ❐ #{hostname}#{hostname_full_ssh} | #{username}#{username_ssh}#{root} "
 tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}#{?battery_status,#{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} | %b %d %R | #S "
 
 # status left style
