@@ -1,0 +1,111 @@
+# ~/.config/starship.toml
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+[conda]
+format = "[$symbol$environment](dimmed green) "
+disabled = false
+
+[character]
+symbol = ""
+vicmd_symbol = ""
+use_symbol_for_status = true  # Show "✖" when the command faild
+error_symbol = ""
+style_success = "bold green"
+style_failure = "bold red"
+
+[directory]
+truncation_length = 5
+truncate_to_repo = false
+#prefix = "in "
+style = "bold cyan"
+disabled = false
+
+[git_branch]
+symbol = "🍣 "
+style = "bold yellow"
+format = "git [$symbol$branch]($style) "
+
+[git_state]
+progress_divider = " of "
+
+[git_status]
+conflicted = "⚔️ "
+ahead = "🏎️ 💨 "
+behind = "🐢 "
+diverged = "🔱 "
+untracked = "🛤️  ×"
+untracked_count.enabled = true
+stashed = "📦 "
+modified = "📝 ×"
+modified_count.enabled = true
+staged = "🗃️  ×"
+staged_count.enabled = true
+renamed = "📛 ×"
+renamed_count.enabled = true
+deleted = "🗑️  ×"
+deleted_count.enabled = true
+# prefix = ""
+# suffix = ""
+style = "bright-white"
+
+[hostname]
+ssh_only = false
+# prefix = "<"
+# suffix = ">"
+# trim_at = "-"
+style = "dimmed white"
+format =  "on [$hostname](bold red) "
+disabled = false
+
+[julia]
+symbol = "ஃ "
+style = "bold green"
+disabled = false 
+
+[memory_usage]
+show_percentage = true
+show_swap = true
+threshold = 50
+style = "bold dimmed white"
+disabled = false
+
+[package]
+disabled = true
+
+[python]
+symbol = " py "
+pyenv_version_name = true
+pyenv_prefix = "foo "
+
+[dotnet]
+symbol = " .net "
+style = "green"
+heuristic = false
+
+[time]
+format = '🕙[\[ $time \]]($style) '
+use_12hr = true
+utc_time_offset = "-5"
+style = "bright-white"
+time_format = "%T"
+disabled = false
+
+[username]
+style_root = "black bold"
+style_user = "dimmed white"
+format = "user [$user]($style) "
+disabled = false
+show_always = true
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "🔌"
+discharging_symbol = "⚡"
+disabled = true
+
+[[battery.display]]
+threshold = 30
+style = "bold red"
+
+
