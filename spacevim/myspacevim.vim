@@ -7,7 +7,7 @@ func! myspacevim#before() abort
   " call SpaceVim#custom#SPC('nore', ['y'], 'echom 1', 'echomessage 1', 1)
   call SpaceVim#custom#SPCGroupName(['='], '+MyFeature')
   call SpaceVim#custom#SPC('nnoremap', ['=', "-"], ':CocList diagnostics<CR>', 'display-lint-error', 0)
-  call SpaceVim#custom#SPC('nnoremap', ['=', "="], ":let blank=''|put=blank|let debug_comment='# ----------  temporary debug code ---------- #'|put=debug_comment|let a='from pprint import pprint'|put=a|let a='print(\"\\n\"*2, \"=\"*40, \" temporary debug code \", \"=\"*40, \"\\n\"*2)'\|put=a|put=blank|put=a|put=debug_comment|put=blank<cr>", 'insert-debug-lines', 0)
+  call SpaceVim#custom#SPC('nnoremap', ['=', "="], ":let blank=''|put=blank|let debug_comment='# ----------  temporary debug code ---------- #'|put=debug_comment|let a='import sys'|put=a|let a='from pprint import pprint'|put=a|let a='print(\"\\n\"*2, \"=\"*40, \" temporary debug code \", \"=\"*40, \"\\n\"*2)'\|put=a|put=blank|put=a|let a='sys.exit(1)'|put=a|put=debug_comment|put=blank<cr>", 'insert-debug-lines', 0)
   call SpaceVim#custom#SPC('nnoremap', ['=', "m"], ":let blank=''|let t='\"\"\" {Module Name}'|put=t|put=blank|let t='id:            Peter Lee (peter.lee@finclab.com)'|put=t|let t='last_update:   ' . strftime('%Y-%m-%d %H:%M:%S %Z')|put=t|let t='type:          lib'|put=t|let t='sensitivity:   datalab@finclab.com'|put=t|let t='platform:      any'|put=t|let t='description:   {Description}'|put=t|let t='\"\"\"'|put=t<cr>", 'insert-module-docstring', 0)
   " call SpaceVim#custom#SPCGroupName(['='], '+Formats')
   " call SpaceVim#custom#SPC('nnoremap', ['=', '='], 'gg=G``', 'format-the-buffer', 0)
@@ -77,7 +77,7 @@ func! myspacevim#after() abort
   let g:NERDTreeQuitOnOpen = 1
 
   " =========== PyDocString DOQ ===========
-  let g:pydocstring_doq_path = '/opt/anaconda/envs/finclab/bin/doq'
+  let g:pydocstring_doq_path = '/opt/conda/bin/doq'
   let g:pydocstring_formatter = 'numpy'
 
   " =========== Tmux Navigator Settings ===========
@@ -120,8 +120,8 @@ func! myspacevim#after() abort
 
 
   " =========== Pydocstring ===========
-  let g:pydocstring_doq_path = '/opt/anaconda/envs/finclab/bin/doq'
-  let g:pydocstring_formatter = 'sphinx'
+  let g:pydocstring_doq_path = '/opt/conda/bin/doq'
+  let g:pydocstring_formatter = 'numpy'
 
   " =========== Github Settings ===========
   " func! myspacevim#before() abort

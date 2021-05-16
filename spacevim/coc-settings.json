@@ -14,6 +14,6 @@
   "python.jediEnabled": false,
   "suggest.enablePreview":true,
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "/opt/anaconda/envs/finclab/bin/black",
-  "python.sortImports.path": "/opt/anaconda/envs/finclab/bin/isort"
+  "python.formatting.blackPath": "/opt/conda/bin/black",
+  "python.sortImports.path": "/opt/conda/bin/isort"
 }

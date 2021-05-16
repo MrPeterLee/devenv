@@ -20,9 +20,10 @@ fi
 # Starfish theme
 eval "$(starship init zsh)"
 
-# Init conda
-export python3_path="/usr/bin/python3"
-dirs=( '/opt/anaconda' \
+## Init conda
+#export python3_path="/usr/bin/python3"
+dirs=( '/opt/conda' \
+   '/opt/anaconda' \
    '/opt/anaconda3' \
    '/usr/local/anaconda3' \
    '/opt/miniconda' \
@@ -30,15 +31,32 @@ dirs=( '/opt/anaconda' \
    )
 for folderpath in $dirs; do 
     if [ -d $folderpath ]; then
-      . "$folderpath/etc/profile.d/conda.sh"  
-      conda activate base
-      export python3_path="$folderpath/bin/python3"
+## . "$folderpath/etc/profile.d/conda.sh"    # commented out by conda initialize
+#      $folderpath/bin/conda activate base
+#      export python3_path="$folderpath/bin/python3"
+       . "$folderpath/etc/profile.d/conda.sh"
     fi
 done
 
-if [ $(hostname) = finclab-us1 ]; then
-    conda activate finclab
-fi
+
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/opt/conda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/opt/conda/etc/profile.d/conda.sh" ]; then
+#         . "/opt/conda/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/opt/conda/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+
+#if [ $(hostname) = finclab-us1 ]; then
+#    conda activate finclab
+#fi
  
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -79,7 +97,7 @@ fi
 
 
 ############################## PATHS #############################
-dirs=( '/opt/anaconda/bin' \
+dirs=( '/opt/conda/bin' \
        '/snap/bin' \
        '$HOME/.local/bin' \
        '$HOME/.files/bin' \
@@ -321,16 +339,16 @@ if [[ -d /lab/lean ]]; then
 fi
 #alias tscompile='cd $tradestation_lean_path; nuget restore ./QuantConnect.Lean.sln ; msbuild ./QuantConnect.Lean.sln ; cd -; tsrun'
 alias tslc='vim $tradestation_lean_path/Launcher/config.json'
-tsoverride_mac_python_config() {
-    if [[ ${os_type} == "mac" ]]; then
-        if [[ -f "${HOME}/project/tradestation/lean/Launcher/bin/Debug/Python.Runtime.dll.config" ]]; then
-            export mac_python_config="<?xml version='1.0' encoding='utf-8'?>\n<configuration>\n<dllmap dll='python3.6m' target='/usr/local/anaconda3/lib/libpython3.6m.dylib' os='!windows'/>\n</configuration>"
-            rm -f /Users/peter/project/tradestation/lean/Launcher/bin/Debug/Python.Runtime.dll.config
-            echo -e $mac_python_config > /Users/peter/project/tradestation/lean/Launcher/bin/Debug/Python.Runtime.dll.config
-            #echo "$mac_python_config"
-        fi
-    fi
-}
+#tsoverride_mac_python_config() {
+#    if [[ ${os_type} == "mac" ]]; then
+#        if [[ -f "${HOME}/project/tradestation/lean/Launcher/bin/Debug/Python.Runtime.dll.config" ]]; then
+#            export mac_python_config="<?xml version='1.0' encoding='utf-8'?>\n<configuration>\n<dllmap dll='python3.6m' target='/usr/local/anaconda3/lib/libpython3.6m.dylib' os='!windows'/>\n</configuration>"
+#            rm -f /Users/peter/project/tradestation/lean/Launcher/bin/Debug/Python.Runtime.dll.config
+#            echo -e $mac_python_config > /Users/peter/project/tradestation/lean/Launcher/bin/Debug/Python.Runtime.dll.config
+#            #echo "$mac_python_config"
+#        fi
+#    fi
+#}
 
 tscompile() {
     lean_path=${1:-"${tradestation_lean_path}"}
@@ -452,4 +470,6 @@ export HOUSTON_URL=http://10.1.1.100:1969
 
 # Launch fish
 fish
+
+
 

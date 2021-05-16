@@ -13,15 +13,15 @@ fundle init
 starship init fish | source
 
 # Init Conda
-eval /opt/anaconda/bin/conda "shell.fish" "hook" $argv | source
+eval /opt/conda/bin/conda "shell.fish" "hook" $argv | source
 
-if [ (hostname) = finclab-us1 ]
-    conda activate finclab
-end 
-
-if [ (hostname) = TradeStation-Peter ]
-    conda activate finclab
-end 
+#if [ (hostname) = finclab-us1 ]
+#    conda activate finclab
+#end 
+#
+#if [ (hostname) = TradeStation-Peter ]
+#    conda activate finclab
+#end 
 
 ############################## My Settings #############################
 fish_vi_key_bindings  # vi-mode
@@ -32,6 +32,7 @@ set -x PATH $PATH /usr/bin
 set -x PATH $PATH /snap/bin
 set -x PATH $PATH /bin
 set -x PATH $PATH /lab/finclab/zsh
+set -x PATH $PATH /opt/conda/bin
 set -x PATH $PATH /opt/anaconda/bin
 set -x PATH $PATH /opt/anaconda3/bin
 set -x PATH $PATH /usr/local/anaconda3/bin
@@ -58,6 +59,7 @@ abbr -a ssh_ts 'ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=
 
 ############################## ALIAS #############################
 alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v /home/peter/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker'
+alias pip2=pip
 alias pip2=pip
 alias pip=pip3
 alias vim=nvim
@@ -198,4 +200,10 @@ alias mux='tmuxinator'
 # ssh copy back to local
 # https://stackoverflow.com/questions/1152362/how-to-send-data-to-local-clipboard-from-a-remote-ssh-session
 alias cb='ssh -p 2222 127.0.0.1 pbcopy'
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+eval /opt/conda/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
 

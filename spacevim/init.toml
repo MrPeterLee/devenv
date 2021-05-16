@@ -91,7 +91,7 @@
       '',
       ''
   ]
-  python_interpreter = '/opt/anaconda/envs/finclab/bin/python'
+  python_interpreter = '/opt/conda/bin/python'
 
 [[layers]]
   name = "lang#csharp"
