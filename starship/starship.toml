@@ -7,12 +7,8 @@ format = "[$symbol$environment](dimmed green) "
 disabled = false
 
 [character]
-symbol = ""
-vicmd_symbol = ""
-use_symbol_for_status = true  # Show "✖" when the command faild
-error_symbol = ""
-style_success = "bold green"
-style_failure = "bold red"
+success_symbol = "[](bold green) "
+error_symbol = "[](bold red) "
 
 [directory]
 truncation_length = 5
@@ -27,24 +23,20 @@ style = "bold yellow"
 format = "git [$symbol$branch]($style) "
 
 [git_state]
-progress_divider = " of "
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = "[🍒 PICKING](bold red)"
 
 [git_status]
 conflicted = "⚔️ "
-ahead = "🏎️ 💨 "
-behind = "🐢 "
-diverged = "🔱 "
 untracked = "🛤️  ×"
-untracked_count.enabled = true
 stashed = "📦 "
 modified = "📝 ×"
-modified_count.enabled = true
 staged = "🗃️  ×"
-staged_count.enabled = true
 renamed = "📛 ×"
-renamed_count.enabled = true
 deleted = "🗑️  ×"
-deleted_count.enabled = true
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
 # prefix = ""
 # suffix = ""
 style = "bright-white"
@@ -64,9 +56,8 @@ style = "bold green"
 disabled = false 
 
 [memory_usage]
-show_percentage = true
-show_swap = true
 threshold = 50
+symbol = "🐏"
 style = "bold dimmed white"
 disabled = false
 

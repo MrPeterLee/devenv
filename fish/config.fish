@@ -23,6 +23,9 @@ eval /opt/conda/bin/conda "shell.fish" "hook" $argv | source
 #    conda activate finclab
 #end 
 
+# Disable greeting
+set fish_greeting
+
 ############################## My Settings #############################
 fish_vi_key_bindings  # vi-mode
 set -gx PROJECT_PATHS ~/lab/paper ~/project
@@ -64,6 +67,7 @@ alias pip2=pip
 alias pip=pip3
 alias vim=nvim
 alias vpn='sudo /usr/local/Cellar/openvpn/2.4.9/sbin/openvpn --config ~/peter.ovpn'
+alias sshp='ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -o "ServerAliveInterval 60" -p 55555 -L 50000:10.1.1.100:50000 peter@vpn.finclab.com'
 alias update_prezto='cd $ZPREZTODIR;git pull;git submodule update --init --recursive'
 if type -q exa
     alias ls='exa --group-directories-first'
