@@ -29,6 +29,7 @@ set fish_greeting
 ############################## My Settings #############################
 fish_vi_key_bindings  # vi-mode
 set -gx PROJECT_PATHS ~/lab/paper ~/project
+bind \cf forward-char
 
 ############################## PATHS #############################
 set -x PATH $PATH /usr/bin
@@ -206,8 +207,4 @@ alias mux='tmuxinator'
 alias cb='ssh -p 2222 127.0.0.1 pbcopy'
 
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-eval /opt/conda/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
 

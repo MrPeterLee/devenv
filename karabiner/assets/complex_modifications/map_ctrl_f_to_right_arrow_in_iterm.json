@@ -1,0 +1,37 @@
+{
+  "title": "Map Ctrl-f to Right Arrow in iTerm2",
+  "rules": [
+    {
+      "description": "Map Ctrl-f to Right Arrow in iTerm2",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^org\\.vim\\.",
+                "^com.googlecode.iterm2",
+                "com\\.microsoft\\.rdc\\.macos"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

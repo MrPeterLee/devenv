@@ -202,6 +202,10 @@
   name = "neomake/neomake"
   merged = false
 
+[[custom_plugins]]
+  name = "tomlion/vim-solidity"
+  merged = false
+
 # [[custom_plugins]]
 #   # required for fzf as it changes working directory to project root
 #   name = "airblade/vim-rooter"

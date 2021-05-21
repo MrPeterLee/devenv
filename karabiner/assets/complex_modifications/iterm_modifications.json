@@ -1,0 +1,127 @@
+{
+  "title": "iTerm Modifications",
+  "rules": [
+    {
+      "description": "Map CMD-hjlt to Alt-hjkl in iTerm2",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": [
+                "command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "h",
+            "modifiers": [
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^org\\.vim\\.",
+                "^com.googlecode.iterm2",
+                "com\\.microsoft\\.rdc\\.macos"
+              ]
+            }
+          ]
+        }, 
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "j",
+            "modifiers": [
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^org\\.vim\\.",
+                "^com.googlecode.iterm2",
+                "com\\.microsoft\\.rdc\\.macos"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "k",
+            "modifiers": [
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^org\\.vim\\.",
+                "^com.googlecode.iterm2",
+                "com\\.microsoft\\.rdc\\.macos"
+              ]
+            }
+          ]
+        }, 
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "l",
+            "modifiers": [
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^org\\.vim\\.",
+                "^com.googlecode.iterm2",
+                "com\\.microsoft\\.rdc\\.macos"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

@@ -119,6 +119,9 @@ set undodir=~/.config/nvim/undo_history
 "----------------------------------------------------------------
 " 2. Plugins (Plug)
 "----------------------------------------------------------------
+" Polyglot
+let g:polyglot_disabled = ['markdown', 'csv']
+
 " List of plugins installed
 call plug#begin('~/.config/nvim/plugged')
 
@@ -212,6 +215,9 @@ call plug#begin('~/.config/nvim/plugged')
 	" VimL support
 	" Plug 'Shougo/neco-vim', { 'commit' : '4c0203b' }
 	Plug 'Shougo/neco-vim'
+
+    " Solidity support
+    " Plug 'tomlion/vim-solidity'
 
 	" Syntax files support
 	" Plug 'Shougo/neco-syntax', { 'commit': '98cba4a' }
@@ -630,9 +636,6 @@ let g:openbrowser_browser_commands = [{
 	\ }]
 
 nmap <Leader>gl <Plug>(openbrowser-open)
-
-" Polyglot
-let g:polyglot_disabled = ['markdown', 'csv']
 
 " Vimwiki settings
 let g:vimwiki_url_maxsave   = 0
