@@ -1,0 +1,123 @@
+# /home/peter/.config/tmuxinator/work.yml
+
+name: work
+root: ~/
+
+windows:
+  - general:
+      layout: even-horizontal
+      panes:
+        - workspace1:
+          - cd $HOME/lab/paper
+          # - conda deactivate && conda activate finclab
+        - workspace2:
+          - cd $HOME/lab/paper
+          # - conda deactivate && conda activate finclab
+            #- fswatch:
+            #  - cd $HOME/project
+            #  - conda deactivate && conda activate finclab
+            #  - fswatch $HOME/lab/paper true
+  - finclab:
+      layout: even-horizontal
+      panes:
+        - workspace1:
+          - cd $HOME/lab/paper/finclab
+          - vim README.md
+        - workspace2:
+          - cd $HOME/lab/paper/finclab
+  - datalab:
+      layout: even-horizontal
+      panes:
+        - workspace1:
+          - cd $HOME/lab/paper/datalab
+          - vim README.md
+        - workspace2:
+          - cd $HOME/lab/paper/datalab
+
+  - tradestation:
+      layout: even-horizontal
+      panes:
+        - workspace1:
+          - cd $HOME/lab/paper/tradestation
+          - vim README.md
+          # - ssh_ts
+          # - conda activate base
+          # - conda deactivate && conda activate finclab
+          # - cd $HOME/ts
+        - workspace2:
+          - cd $HOME/lab/paper/tradestation
+          # - ssh_ts
+          # - conda activate base
+          # - cd $HOME/ts
+
+  - flightlog:
+      layout: even-horizontal
+      panes:
+        - pane1:
+          - cd $HOME/lab/paper
+        - pane2:
+          - cd $HOME/lab/paper
+          - ts flightlog stream -d
+
+  - server-monitor:
+      layout: tiled
+      panes:
+        - glances:
+          - cd
+          #- glances
+
+            # - docker-monitor:
+            #     layout: tiled
+            #     panes:
+            #       - lazydocker:
+            #         - docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v /home/peter/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker
+            #       - cpu_temperature:
+            #         - watch -n 10 -d sensors
+
+  - background-apps:
+      layout: tiled
+      panes:
+        - jupyter_notebook:
+          #- conda deactivate && conda activate finclab
+          - jupyter lab --ip="10.1.1.100" --port=55000 --no-browser --NotebookApp.password=$jupyter_password --NotebookApp.token="" --NotebookApp.allow_remote_access=True --notebook-dir=$HOME
+        - start_swarm:
+          - sleep 2
+          - make -C /lab/prod/labenv start
+
+
+# Optional tmux socket
+# socket_name: foo
+
+# Note that the pre and post options have been deprecated and will be replaced by
+# project hooks.
+
+# Project hooks
+# Runs on project start, always
+# on_project_start: command
+# Run on project start, the first time
+# on_project_first_start: command
+# Run on project start, after the first time
+# on_project_restart: command
+# Run on project exit ( detaching from tmux session )
+# on_project_exit: command
+# Run on project stop
+# on_project_stop: command
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: editor
+
+# Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
+# startup_pane: 1
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
