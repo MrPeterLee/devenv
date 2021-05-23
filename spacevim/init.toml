@@ -84,7 +84,6 @@
 
 [[layers]]
   name = "lang#python"
-  format_on_save = 0
   python_file_head = [
       '#!/usr/bin/env python',
       '# -*- coding: utf-8 -*-',
@@ -92,6 +91,9 @@
       ''
   ]
   python_interpreter = '/opt/conda/bin/python'
+  format_on_save = true
+  enable_typeinfo = true
+  enabled_linters = ['python', 'pylint']
 
 [[layers]]
   name = "lang#csharp"
@@ -204,6 +206,12 @@
 
 [[custom_plugins]]
   name = "tomlion/vim-solidity"
+  merged = false
+
+[[custom_plugins]]
+  # This allows jumping to test files
+  # Check out: https://www.dev-log.me/Jump_between_test_files_and_implementation_in_Vim/
+  name = 'tpope/vim-projectionist'
   merged = false
 
 # [[custom_plugins]]
